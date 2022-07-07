@@ -7,11 +7,12 @@ def interpolate(data, method):
     어떤 차이가 있는지 구현을 해야하는지 확인할 필요가 있음.
     interpolation의 경우 결측 값 및 구간의 앞, 뒤 값과 인덱스 필요함
     따라서 데이터의 첫번째, 마지막이 nan value인 경우 interpolation이 안됨
-    :param data : data(ndarry) of data(Dataframe)
+    :param data : data(ndarry) or data(Dataframe)
     :param method : interpolation 방법 method = ["linear", "spline]
     "linear" : 1차 선형식 기반 interpolation
     "spline" : 다차 방정식 기반 interpolation -> 3차 방정식 기반 "cubic spline"
-    :return:
+    :return: new data shape like ndarry or Dataframe
+    TODO spline interpolation 구현하기 
     """
     data = data
     method = method
@@ -57,7 +58,7 @@ def linear(value1, value1_index, value2, value2_index, nan_index ):
     :param value2: 결측 값 이후의 첫번째 실측 값
     :param value2_index: 결측 값 이후의 첫번째 실측 값 인덱스
     :param nan_index: nan value의 인덱스
-    :return:
+    :return: new value ndarry shape
     """
     "실측 값 index = x, value = y로 표현 "
     a_x, a_y = value1_index, value1

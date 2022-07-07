@@ -1,5 +1,3 @@
-import pandas as pd
-from pandas import DataFrame, Series
 import numpy as np
 
 def interpolate(data, method):
@@ -7,8 +5,8 @@ def interpolate(data, method):
     interpolation 함수는 SciPy와 Pandas에서 찾을 수 있음.
     특히, SciPy는 다양한 interpolation 함수가 있음. 함수 간에
     어떤 차이가 있는지 구현을 해야하는지 확인할 필요가 있음.
-
-    interpolation의 경우 결측 값 및 구간의 앞, 뒤 값과 인덱스 필요함 따라서 데이터의 첫번째, 마지막이 nan value인 경우 interpolation이 안됨
+    interpolation의 경우 결측 값 및 구간의 앞, 뒤 값과 인덱스 필요함
+    따라서 데이터의 첫번째, 마지막이 nan value인 경우 interpolation이 안됨
     :param data : data(ndarry) of data(Dataframe)
     :param method : interpolation 방법 method = ["linear", "spline]
     "linear" : 1차 선형식 기반 interpolation

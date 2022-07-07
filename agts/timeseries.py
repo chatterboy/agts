@@ -1,3 +1,4 @@
+import numpy as np
 class TimeSeries:
     def __init__(self,
                  data):
@@ -16,6 +17,7 @@ class TimeSeries:
         pass
 
     def has_missing(self):
+
         pass
 
     def is_univariate(self):
@@ -26,3 +28,4 @@ class TimeSeries:
 
     def to_tensor(self):
         pass
+

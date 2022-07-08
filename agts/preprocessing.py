@@ -5,20 +5,21 @@ def interpolate(data, method):
     interpolation 함수는 SciPy와 Pandas에서 찾을 수 있음.
     특히, SciPy는 다양한 interpolation 함수가 있음. 함수 간에
     어떤 차이가 있는지 구현을 해야하는지 확인할 필요가 있음.
-    interpolation의 경우 결측 값 및 구간의 앞, 뒤 값과 인덱스 필요함
-    따라서 데이터의 첫번째, 마지막이 nan value인 경우 interpolation이 안됨
+    "interpolation의 경우 결측 값 및 구간의 앞, 뒤 값과 인덱스 필요함"
+    "따라서 데이터의 첫번째, 마지막이 nan value인 경우 interpolation이 안됨"
     :param data : data(ndarry) or data(Dataframe)
     :param method : interpolation 방법 method = ["linear", "spline]
     "linear" : 1차 선형식 기반 interpolation
-    "spline" : 다차 방정식 기반 interpolation -> 3차 방정식 기반 "cubic spline"
+    "spline" : 다차 방정식 기반 interpolation == 3차 방정식 기반 "cubic spline"
     :return: new data shape like ndarry or Dataframe
-    TODO spline interpolation 구현하기 
+    TODO spline interpolation 구현하기
     """
-    data = data
-    method = method
+    data_array = data
 
-    if isinstance(data, np.ndarry) == False:  # ndarray로 변경
+    if isinstance(data_array, np.ndarry) == False:  # ndarray로 변경
         data_array = TimeSeries.to_array(data)
+
+    method = method
     data_nan = np.argwhere(np.isnan(data_array))  # 주어진 데이터에서 nan value 위치를 array 형태로 반환
     nan_column = data_nan[:, 1]  # nan values 위치에서 열 추출
     nan_column = np.unique(nan_column)  # 중복 열 제외
@@ -46,7 +47,7 @@ def interpolate(data, method):
                     value2_index = j+num
                     value2 = data_array[j+num, i]
                     data_array[j,i] = linear(value1, value1_index, value2, value2_index, nan_index)
-    else :
+    else :"spline interpolate"
         pass
     pass
 
@@ -74,6 +75,15 @@ def linear(value1, value1_index, value2, value2_index, nan_index ):
 
     return new_value
 
+def spline():
+    """
+    다차원 방정식을 사용한 interpolation
+    실측 값 사이의 결측 값 혹은 그 구간을 작은 부분 구간으로 나눔
+    나눠진 구간을 연결하는 미분 가능한 형태로 interpolation
+
+    :return:
+    """
+    pass
 
 def impute():
     """

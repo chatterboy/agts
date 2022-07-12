@@ -136,8 +136,6 @@ def Impute_test(): # 정상 작동하는지 테스트하는 함수
     print("knn")
     print(Imputation_knn(df))
 
-# Impute_test()
-
 def scale():
     """
     scaling 함수는 sklearn.preprocessing에서 찾을 수 있음.
@@ -153,6 +151,5 @@ def scale():
 def minmax_scale():
     pass
 
-# impute 테스트
-# imputer = Impute()
-# imputer.test()
+
+# Impute_test()

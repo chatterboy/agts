@@ -1,5 +1,5 @@
 import numpy as np
-
+from scipy import interpolate
 def interpolate(data, method):
     """
     interpolation 함수는 SciPy와 Pandas에서 찾을 수 있음.
@@ -47,8 +47,14 @@ def interpolate(data, method):
                     value2_index = j+num
                     value2 = data_array[j+num, i]
                     data_array[j,i] = linear(value1, value1_index, value2, value2_index, nan_index)
-    else :"spline interpolate"
-        pass
+    else :
+        for i in nan_column:
+            y = data_array[:,i]
+            x = np.arange(len(y))
+            xx = np.argwhere(~np.isnan(y))        # nan 없는 인덱스
+            yy = y[~np.isnan(y)]                  # nan 없는 array
+            f = spline(xx, yy)                    # spline 함수 생성
+            data_array[:,i] = f(x)                # 생성한 함수에 원래 data의 index 이용해 interpolate
     pass
 
 
@@ -75,15 +81,14 @@ def linear(value1, value1_index, value2, value2_index, nan_index ):
 
     return new_value
 
-def spline():
+def spline(x_index, y_value):
     """
     다차원 방정식을 사용한 interpolation
     실측 값 사이의 결측 값 혹은 그 구간을 작은 부분 구간으로 나눔
     나눠진 구간을 연결하는 미분 가능한 형태로 interpolation
-
     :return:
     """
-    pass
+    return interpolate.interp1d(x_index, y_value, kind = 'cubic')
 
 def impute():
     """
